@@ -1,2 +1,251 @@
 package br.com.fiap.healfmind.screens
 
+import android.widget.ImageButton
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import br.com.fiap.healfmind.R
+import com.example.healf_mind.components.CardHome
+
+
+@Composable
+fun HomeScreen(nome: String , navController: NavController) {
+    var pesquisa by remember {
+        mutableStateOf("")
+    }
+
+    Column(modifier = Modifier
+        .fillMaxWidth()
+    ){
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 20.dp, start = 15.dp, end = 15.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+
+
+
+        ) {
+            IconButton(
+                onClick = {
+                    navController.navigate("Menu")
+                }
+            ) {
+            Icon(painter = painterResource(id = R.drawable.menu_menu) ,contentDescription = "Menu",
+                modifier = Modifier
+                    .width(20.dp)
+                    .height(20.dp),
+
+            )}
+
+            Text(
+                text = "Home",
+                style = TextStyle(
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight(700),
+                    color = Color(0xFF005DF9)
+                ),
+            )
+            Image(
+                painter = painterResource(id = R.drawable.perfil) ,contentDescription = "Perfil",
+                modifier = Modifier
+                    .width(50.dp)
+                    .height(50.dp)
+                    .clip(RoundedCornerShape(30.dp)),
+                contentScale = ContentScale.FillBounds,
+
+                )
+        }
+        Column(
+            modifier = Modifier.padding(top = 20.dp, start = 15.dp , end = 15.dp , bottom = 20.dp)
+        ){
+            Text(
+                text = "Olá $nome",
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    fontFamily = FontFamily.SansSerif,
+                    fontWeight = FontWeight(700),
+                    color = Color(0xFF000000),
+                )
+            )
+            Text(
+                text = "Encontre o médico adequado para você",
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    lineHeight = 15.sp,
+                    fontFamily = FontFamily.SansSerif,
+                    fontWeight = FontWeight(400),
+                    color = Color(0xFF969696),
+                )
+            )
+        }
+        Column(
+            //modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            TextField(
+                value = pesquisa,
+                onValueChange = {
+                        letra -> pesquisa = letra
+                },
+                modifier = Modifier
+                    .shadow(
+                        elevation = 4.dp,
+                        spotColor = Color(0x1A000000),
+                        ambientColor = Color(0x1A000000)
+                    )
+                    .padding(bottom = 20.dp)
+                    .width(370.dp)
+                    .height(35.dp)
+                    .background(color = Color(0xFFFAFAFA), shape = RoundedCornerShape(size = 50.dp))
+            )
+            Card (modifier = Modifier
+                .shadow(
+                    elevation = 4.dp,
+                    spotColor = Color(0x40000000),
+                    ambientColor = Color(0x40000000)
+                )
+                .width(370.dp)
+                .height(107.dp),
+                colors = CardDefaults.cardColors(Color(0xFF005DF9)),
+                shape = RoundedCornerShape(25.dp),
+
+
+                ){
+                Column (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ){
+                    Text(
+                        modifier = Modifier.padding(20.dp),
+                        text = "Uma nova opção para você cuidar da sua saúde",
+                        style = TextStyle(
+                            fontSize = 20.sp,
+                            fontFamily = FontFamily.SansSerif,
+                            fontWeight = FontWeight(700),
+                            color = Color(0xFFFFFFFF),
+                            textAlign = TextAlign.Center,
+                        )
+
+                    )
+                }
+
+            }
+            Text(
+                text = "Consultas",
+                modifier = Modifier.padding(top = 20.dp , bottom = 20.dp)
+            )
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 10.dp, top = 10.dp, bottom = 30.dp, end = 10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                CardHome(titulo = "Marcar\nconsulta" , caminhoImagem = R.drawable.doutor2)
+                CardHome(titulo = "Minhas\nconsultas" , caminhoImagem = R.drawable.consulta2)
+                CardHome(titulo = "Clínicas" , caminhoImagem = R.drawable.clinica2)
+            }
+            Text(
+                text = "Parceiros com desconto",
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    fontFamily = FontFamily.SansSerif,
+                    fontWeight = FontWeight(700),
+                    color = Color(0xFF000000),
+                )
+            )
+            Text(
+                textAlign = TextAlign.Center,
+                text = "Confira todos os estabelecimentos parceiros com desconto e aproveite",
+                style = TextStyle(
+                    fontSize = 14.sp,
+                    lineHeight = 15.sp,
+                    fontFamily = FontFamily.SansSerif,
+                    fontWeight = FontWeight(400),
+                    color = Color(0xFF969696),
+                )
+            )
+            Card(
+                modifier = Modifier
+                    .shadow(
+                        elevation = 4.dp,
+                        spotColor = Color(0x40000000),
+                        ambientColor = Color(0x40000000)
+                    )
+                    .width(370.dp)
+                    .height(107.dp)
+                    .padding(top = 20.dp, bottom = 5.dp),
+
+                colors = CardDefaults.cardColors(Color(0xFF005DF9)),
+                shape = RoundedCornerShape(20.dp)
+            ) {
+                Column (
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ){
+                    Text(text = "Em breve farmácias credenciadas",
+                        style = TextStyle(
+                            fontSize = 20.sp,
+                            fontFamily = FontFamily.SansSerif,
+                            fontWeight = FontWeight(700),
+                            color = Color(0xFFFFFFFF),
+                            textAlign = TextAlign.Center,
+                        )
+                    )
+                }
+            }
+        }
+    }
+}
+
+
+
+//@Preview(showSystemUi =  true , showBackground = true)
+//@Composable
+//fun HomeScreenPreview() {
+//    HomeScreen("Teste")
+//}
+
