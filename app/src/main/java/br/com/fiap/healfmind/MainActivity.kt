@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.fiap.healfmind.screens.HomeScreen
 import br.com.fiap.healfmind.screens.MenuScreen
+import br.com.fiap.healfmind.screens.PerfilScreen
 import br.com.fiap.healfmind.ui.theme.HealfMindTheme
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
@@ -64,9 +65,13 @@ class MainActivity : ComponentActivity() {
                         composable(route = "Home/{nome}"){
                             var nome = it.arguments?.getString("nome")
                             HomeScreen(nome!!, navController ) // double bang -> Tratar valoresNull
+                            //HomeScreen( ) // double bang -> Tratar valoresNull
                         }
                         composable(route = "Menu"){
                             MenuScreen( navController)
+                        }
+                        composable(route = "Perfil"){
+                            PerfilScreen( navController )
                         }
 
                     }

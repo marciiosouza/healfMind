@@ -4,6 +4,7 @@ import android.widget.ImageButton
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -17,6 +18,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -32,6 +34,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -45,12 +48,14 @@ import com.example.healf_mind.components.CardHome
 
 @Composable
 fun HomeScreen(nome: String , navController: NavController) {
+//fun HomeScreen() {
     var pesquisa by remember {
         mutableStateOf("")
     }
 
     Column(modifier = Modifier
-        .fillMaxWidth()
+        .fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ){
 
         Row(
@@ -82,21 +87,28 @@ fun HomeScreen(nome: String , navController: NavController) {
                     color = Color(0xFF005DF9)
                 ),
             )
-            Image(
-                painter = painterResource(id = R.drawable.perfil) ,contentDescription = "Perfil",
-                modifier = Modifier
-                    .width(50.dp)
-                    .height(50.dp)
-                    .clip(RoundedCornerShape(30.dp)),
-                contentScale = ContentScale.FillBounds,
+            IconButton(
+                onClick = {
+                    navController.navigate("Perfil") }
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.perfil) ,contentDescription = "Perfil",
+                    modifier = Modifier
+                        .width(50.dp)
+                        .height(50.dp)
+                        .clip(RoundedCornerShape(30.dp)),
+                    contentScale = ContentScale.FillBounds,
 
-                )
+                    )
+            }
+
         }
         Column(
             modifier = Modifier.padding(top = 20.dp, start = 15.dp , end = 15.dp , bottom = 20.dp)
         ){
             Text(
-                text = "Olá $nome",
+                //text = "Olá $nome",
+                text = "Olá ",
                 style = TextStyle(
                     fontSize = 20.sp,
                     fontFamily = FontFamily.SansSerif,
@@ -119,7 +131,7 @@ fun HomeScreen(nome: String , navController: NavController) {
             //modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            TextField(
+            OutlinedTextField(
                 value = pesquisa,
                 onValueChange = {
                         letra -> pesquisa = letra
@@ -132,7 +144,7 @@ fun HomeScreen(nome: String , navController: NavController) {
                     )
                     .padding(bottom = 20.dp)
                     .width(370.dp)
-                    .height(35.dp)
+                    .height(40.dp)
                     .background(color = Color(0xFFFAFAFA), shape = RoundedCornerShape(size = 50.dp))
             )
             Card (modifier = Modifier
@@ -151,7 +163,8 @@ fun HomeScreen(nome: String , navController: NavController) {
                 Column (
                     modifier = Modifier
                         .fillMaxWidth()
-                        .fillMaxHeight(),
+                        .fillMaxHeight()
+                        .padding(start = 20.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ){
@@ -170,15 +183,43 @@ fun HomeScreen(nome: String , navController: NavController) {
                 }
 
             }
+            Row (
+                modifier = Modifier
+                    .align(alignment = Alignment.Start)
+                    .padding(start = 15.dp, top = 10.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                Card(
+                modifier = Modifier
+                    .width(7.dp)
+                    .height(24.dp) ,
+                    colors = CardDefaults.cardColors(Color(0xFF005DF9)),
+
+
+            ) {
+
+            }
+
+
             Text(
                 text = "Consultas",
-                modifier = Modifier.padding(top = 20.dp , bottom = 20.dp)
+                modifier = Modifier.padding(start = 10.dp),
+                    //.padding(start = 20.dp, top = 20.dp, bottom = 15.dp),
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    fontFamily = FontFamily(Font(R.font.inter_bold)),
+                    fontWeight = FontWeight(700),
+                    color = Color(0xFF000000),
+                )
+
             )
+            }
 
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 10.dp, top = 10.dp, bottom = 30.dp, end = 10.dp),
+                    .padding(start = 10.dp, top = 10.dp, bottom = 15.dp, end = 10.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 CardHome(titulo = "Marcar\nconsulta" , caminhoImagem = R.drawable.doutor2)
@@ -187,6 +228,9 @@ fun HomeScreen(nome: String , navController: NavController) {
             }
             Text(
                 text = "Parceiros com desconto",
+                modifier = Modifier
+                    .align(alignment = Alignment.Start)
+                    .padding(start = 20.dp, top = 10.dp),
                 style = TextStyle(
                     fontSize = 20.sp,
                     fontFamily = FontFamily.SansSerif,
@@ -194,17 +238,33 @@ fun HomeScreen(nome: String , navController: NavController) {
                     color = Color(0xFF000000),
                 )
             )
-            Text(
-                textAlign = TextAlign.Center,
-                text = "Confira todos os estabelecimentos parceiros com desconto e aproveite",
-                style = TextStyle(
-                    fontSize = 14.sp,
-                    lineHeight = 15.sp,
-                    fontFamily = FontFamily.SansSerif,
-                    fontWeight = FontWeight(400),
-                    color = Color(0xFF969696),
+            Row (
+                modifier = Modifier.padding(15.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Card(
+                    modifier = Modifier
+                        .width(7.dp)
+                        .height(24.dp) ,
+                    colors = CardDefaults.cardColors(Color(0xFF00F0AD)),
+
+                        ){}
+
+                Text(
+                    textAlign = TextAlign.Start,
+                    modifier = Modifier.padding(start = 10.dp),
+                    text = "Confira todos os estabelecimentos\nparceiros com desconto e aproveite",
+                    style = TextStyle(
+                        fontSize = 14.sp,
+                        lineHeight = 15.sp,
+                        fontFamily = FontFamily.SansSerif,
+                        fontWeight = FontWeight(400),
+                        color = Color(0xFF969696),
+
+                    )
                 )
-            )
+            }
+
             Card(
                 modifier = Modifier
                     .shadow(
@@ -246,6 +306,6 @@ fun HomeScreen(nome: String , navController: NavController) {
 //@Preview(showSystemUi =  true , showBackground = true)
 //@Composable
 //fun HomeScreenPreview() {
-//    HomeScreen("Teste")
+//    HomeScreen()
 //}
 
