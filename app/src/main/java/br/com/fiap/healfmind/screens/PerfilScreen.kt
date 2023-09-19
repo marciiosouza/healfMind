@@ -14,8 +14,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -23,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -93,13 +98,20 @@ fun PerfilScreen(navController: NavController) {
 
             Column(modifier = Modifier
                 .padding(32.dp)
-                .fillMaxWidth()) {
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState()))
+
+
+            {
+
+
 
                 Text(
                     text = "Dados Pessoais",
                     fontSize = 17.sp,
                     fontFamily = FontFamily(Font(R.font.inter_bold)),
-                    color = colorResource(id = R.color.preto)
+                    color = colorResource(id = R.color.preto),
+
 
                 )
 
@@ -227,6 +239,56 @@ fun PerfilScreen(navController: NavController) {
                     )
                 }
 
+
+                Column {
+
+
+                    Spacer(modifier = Modifier.height(12.dp),)
+                    Text(
+                        text = "Contratos",
+                        fontSize = 17.sp,
+                        fontFamily = FontFamily(Font(R.font.inter_bold)),
+                        color = colorResource(id = R.color.preto),
+
+
+                        )
+
+                    Spacer(modifier = Modifier.height(20.dp))
+                    Text(text = "Contrato de adesão",
+                        fontSize = 12.sp,
+                        fontFamily = FontFamily(Font(R.font.inter_regular)),
+                        color = colorResource(id = R.color.azul),
+                        )
+
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text(text = "Termos e condições de uso",
+                        fontSize = 12.sp,
+                        fontFamily = FontFamily(Font(R.font.inter_regular)),
+                        color = colorResource(id = R.color.azul),
+                    )
+
+                    Spacer(modifier = Modifier.height(25.dp))
+                    Button(onClick = { /*TODO*/ },
+                        modifier = Modifier
+                            .size(
+                                width = 300.dp,
+                                height = 50.dp
+                            )
+                            .padding(bottom = 10.dp),
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF005DF9)),
+
+                        
+                    )
+                    {
+
+                        Text(text = "sair da conta")
+                        Spacer(modifier = Modifier.height(25.dp))
+
+                    }
+
+
+
+                }
             }
         }
     }

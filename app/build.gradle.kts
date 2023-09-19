@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "br.com.fiap.healfmind"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "br.com.fiap.healfmind"
