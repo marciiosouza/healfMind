@@ -58,8 +58,8 @@ fun PerfilScreen(navController: NavController) {
             ) {
 
                 IconButton(onClick = {
-                    var nome = "nome"
-                    //navController.navigate()
+
+                    navController.navigate("Home/{nome}")
                 }) {
                     Image(
                         painter = painterResource(id = R.drawable.arrow),
