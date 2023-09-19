@@ -90,6 +90,7 @@ fun HomeScreen(nome: String , navController: NavController) {
             IconButton(
                 onClick = {
                     navController.navigate("Perfil") }
+
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.perfil) ,contentDescription = "Perfil",
@@ -200,8 +201,6 @@ fun HomeScreen(nome: String , navController: NavController) {
             ) {
 
             }
-
-
             Text(
                 text = "Consultas",
                 modifier = Modifier.padding(start = 10.dp),
@@ -239,7 +238,8 @@ fun HomeScreen(nome: String , navController: NavController) {
                 )
             )
             Row (
-                modifier = Modifier.padding(15.dp),
+                modifier = Modifier.padding(15.dp).align(alignment = Alignment.Start),
+
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Card(
