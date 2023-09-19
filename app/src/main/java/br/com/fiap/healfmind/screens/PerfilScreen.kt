@@ -33,12 +33,15 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.fiap.healfmind.R
 @Composable
+//fun PerfilScreen() {
 fun PerfilScreen(navController: NavController) {
+
     var nome = "Marcio"
     Box(
         modifier = Modifier.fillMaxSize()
@@ -59,7 +62,7 @@ fun PerfilScreen(navController: NavController) {
 
                 IconButton(onClick = {
 
-                    navController.navigate("Home/{nome}")
+                   navController.navigate("Home/{nome}")
                 }) {
                     Image(
                         painter = painterResource(id = R.drawable.arrow),
@@ -285,11 +288,14 @@ fun PerfilScreen(navController: NavController) {
                         Spacer(modifier = Modifier.height(25.dp))
 
                     }
-
-
-
                 }
             }
         }
     }
 }
+
+//@Preview(showSystemUi =  true , showBackground = true)
+//@Composable
+//fun HomeScreenPreview() {
+//    PerfilScreen()
+//}

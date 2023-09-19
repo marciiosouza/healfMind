@@ -10,15 +10,10 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import br.com.fiap.healfmind.screens.HomeScreen
-import br.com.fiap.healfmind.screens.MenuScreen
 import br.com.fiap.healfmind.screens.PerfilScreen
 import br.com.fiap.healfmind.ui.theme.HealfMindTheme
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -67,9 +62,7 @@ class MainActivity : ComponentActivity() {
                             HomeScreen(nome!!, navController ) // double bang -> Tratar valoresNull
                             //HomeScreen( ) // double bang -> Tratar valoresNull
                         }
-                        composable(route = "Menu"){
-                            MenuScreen( navController)
-                        }
+
                         composable(route = "Perfil"){
                             PerfilScreen( navController )
                         }
@@ -83,53 +76,3 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-//class MainActivity : ComponentActivity() {
-//    @OptIn(ExperimentalAnimationApi::class)
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContent {
-//            Healf_mindTheme {
-//                Surface(
-//                    modifier = Modifier
-//                        .fillMaxHeight()
-//                        .fillMaxWidth(),
-//                    color = MaterialTheme.colorScheme.background,
-//
-//                    ) {
-//                    // animaçãona transição da tela
-//                    val navController = rememberAnimatedNavController()
-//                    AnimatedNavHost(
-//                        navController = navController,
-//                        startDestination = "Login",
-//                        exitTransition = {
-//                            slideOutOfContainer(
-//                                towards = AnimatedContentScope.SlideDirection.End,
-//                                tween(1000)
-//                            ) + fadeOut(animationSpec = tween(1000))
-//                        },
-//                        enterTransition = {
-//                            slideIntoContainer(towards = AnimatedContentScope.SlideDirection.Down,
-//                                tween(2000)
-//                            )
-//                        }
-//                    ){
-//                        composable(route = "Login"){
-//                            // Passando a instancia de LoginScreenViewModel usando a chave para usar o construtor da classe
-//                            // Nav controle instancia de navegação entre telas
-//                            LoginScreen( LoginScreenViewModel() ,navController)
-//                        }
-//                        composable(route = "Home/{nome}"){
-//                            var nome = it.arguments?.getString("nome")
-//                            HomeScreen(nome!!) // double bang -> Tratar valoresNull
-//                        }
-//                        composable(route = "Menu"){
-//                            MenuScreen( navController)
-//                        }
-//
-//                    }
-//
-//                }
-//            }
-//        }
-//    }
-//}

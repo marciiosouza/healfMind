@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -32,6 +33,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -48,7 +50,6 @@ import com.example.healf_mind.components.CardHome
 
 @Composable
 fun HomeScreen(nome: String , navController: NavController) {
-//fun HomeScreen() {
     var pesquisa by remember {
         mutableStateOf("")
     }
@@ -62,10 +63,7 @@ fun HomeScreen(nome: String , navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 20.dp, start = 15.dp, end = 15.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-
-
-
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             IconButton(
                 onClick = {
@@ -84,7 +82,8 @@ fun HomeScreen(nome: String , navController: NavController) {
                 style = TextStyle(
                     fontSize = 18.sp,
                     fontWeight = FontWeight(700),
-                    color = Color(0xFF005DF9)
+                    color = Color(0xFF005DF9),
+
                 ),
             )
             IconButton(
@@ -99,17 +98,21 @@ fun HomeScreen(nome: String , navController: NavController) {
                         .height(50.dp)
                         .clip(RoundedCornerShape(30.dp)),
                     contentScale = ContentScale.FillBounds,
-
                     )
             }
-
         }
         Column(
-            modifier = Modifier.padding(top = 20.dp, start = 15.dp , end = 15.dp , bottom = 20.dp)
+            modifier = Modifier
+                .padding(
+                    top = 20.dp,
+                    start = 15.dp,
+                    end = 15.dp,
+                    bottom = 20.dp
+                )
+                .align(alignment = Alignment.Start)
         ){
             Text(
-                //text = "Olá $nome",
-                text = "Olá ",
+                text = "Olá $nome",
                 style = TextStyle(
                     fontSize = 20.sp,
                     fontFamily = FontFamily.SansSerif,
@@ -145,8 +148,18 @@ fun HomeScreen(nome: String , navController: NavController) {
                     )
                     .padding(bottom = 20.dp)
                     .width(370.dp)
-                    .height(40.dp)
-                    .background(color = Color(0xFFFAFAFA), shape = RoundedCornerShape(size = 50.dp))
+                    .height(50.dp)
+                    .background(color = Color(0xFFFAFAFA), shape = RoundedCornerShape(size = 50.dp)),
+                shape = RoundedCornerShape(30.dp),
+                placeholder = {
+                    Text(text = "Pesquisar", color = colorResource(id = R.color.cinza))
+                },
+                leadingIcon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.search), contentDescription = "",
+                        Modifier.size(15.dp)
+                        )
+                }
             )
             Card (modifier = Modifier
                 .shadow(
@@ -238,7 +251,9 @@ fun HomeScreen(nome: String , navController: NavController) {
                 )
             )
             Row (
-                modifier = Modifier.padding(15.dp).align(alignment = Alignment.Start),
+                modifier = Modifier
+                    .padding(15.dp)
+                    .align(alignment = Alignment.Start),
 
                 verticalAlignment = Alignment.CenterVertically
             ) {
