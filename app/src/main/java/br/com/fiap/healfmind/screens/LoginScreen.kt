@@ -12,11 +12,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -93,7 +95,8 @@ fun LoginScreen( loginScreenViewModel: LoginScreenViewModel ,navController: NavC
             modifier = Modifier
                 .height(400.dp)
                 .width(360.dp)
-                .fillMaxWidth().padding(20.dp),
+                .fillMaxWidth()
+                .padding(20.dp),
             colors = CardDefaults.cardColors(Color(0xFFFAFAFA)),
             shape = RoundedCornerShape(35.dp),
             elevation = CardDefaults.cardElevation(4.dp)
@@ -145,9 +148,11 @@ fun LoginScreen( loginScreenViewModel: LoginScreenViewModel ,navController: NavC
                 )
                 if(erroEmail){
                     Text(
-                        modifier = Modifier.fillMaxWidth().padding(end = 20.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(end = 20.dp),
                         textAlign = TextAlign.End,
-                        text = "O e-mail é obrigatório !",
+                        text = "O e-mail é obrigatório!",
                         fontSize = 14.sp,
                         color = Color.Red
                     )
@@ -188,7 +193,9 @@ fun LoginScreen( loginScreenViewModel: LoginScreenViewModel ,navController: NavC
                             navController.navigate("Home/Wagner")
                         }
                     },
-                    modifier = Modifier.size(width = 230.dp , height = 50.dp).padding(bottom = 10.dp),
+                    modifier = Modifier
+                        .size(width = 230.dp, height = 50.dp)
+                        .padding(bottom = 10.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF005DF9))
 
                 ) {
@@ -198,15 +205,26 @@ fun LoginScreen( loginScreenViewModel: LoginScreenViewModel ,navController: NavC
                         )
 
                 }
-                Text(
-                    text = "Criar conta com e-mail",
-                    style = TextStyle(
-                        fontSize = 14.sp,
-                        fontFamily = FontFamily(Font(R.font.inter_regular)),
-                        fontWeight = FontWeight(400),
-                        color = Color(0xFF005DF9),
+
+
+                TextButton(
+                    onClick = {
+                        navController.navigate("Cadastro")
+                    }
+                ) {
+                    Text(
+                        text = "Criar conta com e-mail",
+                        style = TextStyle(
+                            fontSize = 14.sp,
+                            fontFamily = FontFamily(Font(R.font.inter_regular)),
+                            fontWeight = FontWeight(400),
+                            color = Color(0xFF005DF9),
+                        )
                     )
-                )
+                }
+
+
+
                     //modifier = Modifier.padding(top = 30.dp)
 
 

@@ -275,11 +275,9 @@ fun HomeScreen(nome: String , navController: NavController) {
                         fontFamily = FontFamily.SansSerif,
                         fontWeight = FontWeight(400),
                         color = Color(0xFF969696),
-
                     )
                 )
             }
-
             Card(
                 modifier = Modifier
                     .shadow(
