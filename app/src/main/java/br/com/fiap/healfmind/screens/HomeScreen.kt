@@ -234,9 +234,9 @@ fun HomeScreen(nome: String , navController: NavController) {
                     .padding(start = 10.dp, top = 10.dp, bottom = 15.dp, end = 10.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                CardHome(titulo = "Marcar\nconsulta" , caminhoImagem = R.drawable.doutor2)
-                CardHome(titulo = "Minhas\nconsultas" , caminhoImagem = R.drawable.consulta2)
-                CardHome(titulo = "Clínicas" , caminhoImagem = R.drawable.clinica2)
+                CardHome(titulo = "Marcar\nconsulta" , caminhoImagem = R.drawable.doutor2 , navController , "MarcarConsulta")
+                CardHome(titulo = "Minhas\nconsultas" , caminhoImagem = R.drawable.consulta2,navController , "")
+                CardHome(titulo = "Clínicas" , caminhoImagem = R.drawable.clinica2,navController , "")
             }
             Text(
                 text = "Parceiros com desconto",

@@ -16,8 +16,8 @@ interface UsuarioDao {
     @Update
     fun atualizar(usuario: Usuarios) : Int
 
-    @Delete
+    @Query("SELECT * FROM tb_usuarios WHERE Id = :id")
     fun buscarUsuarioPeloId(id : Long) : Usuarios
-    @Query("SELECT * FROM tb_usuarios WHERE email = :email ") // : email é var
-    fun buscarUsuarioPeloEmail(email : String) : String
+    //@Query("SELECT * FROM tb_usuarios WHERE email = :email ") // : email é var
+   // fun buscarUsuarioPeloEmail(email : String) : Usuarios
 }

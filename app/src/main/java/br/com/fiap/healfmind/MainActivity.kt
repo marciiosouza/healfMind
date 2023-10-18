@@ -15,9 +15,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import br.com.fiap.healfmind.screens.CadastroScreen
 import br.com.fiap.healfmind.screens.HomeScreen
+import br.com.fiap.healfmind.screens.MarcarConsultaScreen
 import br.com.fiap.healfmind.screens.PerfilScreen
 import br.com.fiap.healfmind.ui.theme.HealfMindTheme
 import br.com.fiap.healfmind.viewModel.CadastroScreenViewModel
+import br.com.fiap.healfmind.viewModel.MarcarConsultaScreenViewModel
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -70,6 +72,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = "Cadastro"){
                             CadastroScreen( navController , CadastroScreenViewModel() )
+                        }
+                        composable(route = "MarcarConsulta"){
+                            MarcarConsultaScreen(MarcarConsultaScreenViewModel()  )
                         }
 
                     }
