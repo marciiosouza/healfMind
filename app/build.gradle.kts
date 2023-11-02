@@ -54,8 +54,8 @@ dependencies {
 
 
     //Dependencia de Navegação
-//    implementation("androidx.navigation:navigation-compose:2.7.2")
-    implementation("io.coil-kt:coil-compose:2.2.0")
+   // implementation("androidx.navigation:navigation-compose:2.7.2")
+    implementation("io.coil-kt:coil-compose:2.4.0")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
     implementation("androidx.activity:activity-compose:1.7.0")

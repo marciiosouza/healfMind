@@ -13,9 +13,11 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
+import br.com.fiap.healfmind.data.dataMeditacao
 import br.com.fiap.healfmind.screens.CadastroScreen
 import br.com.fiap.healfmind.screens.HomeScreen
 import br.com.fiap.healfmind.screens.MarcarConsultaScreen
+import br.com.fiap.healfmind.screens.MeditacoesScreen
 import br.com.fiap.healfmind.screens.PerfilScreen
 import br.com.fiap.healfmind.ui.theme.HealfMindTheme
 import br.com.fiap.healfmind.viewModel.CadastroScreenViewModel
@@ -75,6 +77,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = "MarcarConsulta"){
                             MarcarConsultaScreen(MarcarConsultaScreenViewModel()  )
+                        }
+                        composable(route = "Meditacoes"){
+                            MeditacoesScreen(meditacoes = dataMeditacao)
                         }
 
                     }

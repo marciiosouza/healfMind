@@ -5,11 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,37 +15,36 @@ import br.com.fiap.healfmind.R
 import br.com.fiap.healfmind.model.Meditacao
 import coil.compose.AsyncImage
 
+//import coil.compose.AsyncImage
+
 
 @Composable
 fun MeditacoesItem(meditacao: Meditacao) {
 
-        Surface {
+
             Column(
                 Modifier
                     .fillMaxWidth()
                     .fillMaxHeight()) {
                 Box(){
+//                    Image(painter = painterResource(id = meditacao.url), contentDescription = null )
                     AsyncImage(
                         model = meditacao.url,
                         contentDescription = null,
                         Modifier
                             .fillMaxHeight()
-                            .fillMaxWidth(),
+                            .fillMaxWidth())
+                }
                         //placeholder = painterResource(id = R.drawable.ic_launcher_background)
-                    )
+
                 }
 
             }
-        }
 
 
 
 
 
-
-
-
-}
 
 
 

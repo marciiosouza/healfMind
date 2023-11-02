@@ -41,7 +41,7 @@ fun CardHome(titulo: String , caminhoImagem : Int , navController: NavController
     }
 
     rota3 = rota
-    Log.i("Primeira var", rota3)
+
     Card (
         modifier = Modifier
             .shadow(
