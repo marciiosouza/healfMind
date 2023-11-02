@@ -122,14 +122,13 @@ fun MarcarConsultaScreen( marcarConsultaScreenViewModel: MarcarConsultaScreenVie
                     )
                 )
             }
-
         }
     }
 }
 
 
-//@Preview(showSystemUi =  true , showBackground = true)
-//@Composable
-//fun CadastroScreenPreview(){
-//    MarcarConsultaScreen()
-//}
+@Preview(showSystemUi =  true , showBackground = true)
+@Composable
+fun CadastroScreenPreview(){
+    MarcarConsultaScreen(MarcarConsultaScreenViewModel())
+}
