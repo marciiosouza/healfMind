@@ -1,9 +1,11 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package br.com.fiap.healfmind.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -15,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -37,7 +40,6 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -46,15 +48,53 @@ import br.com.fiap.healfmind.components.Footer
 import com.example.healf_mind.components.CardHome
 
 
+//data class BottonNavigationItem(
+//    val title: String,
+//    val selectedIcon: ImageVector,
+//    val unselectedIcon: ImageVector,
+//    val hasNew: Boolean,
+//    val badgeCount: Int? = null // Contador de notificações
+//)
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(nome: String , navController: NavController) {
     var pesquisa by remember {
         mutableStateOf("")
     }
 
+//    val items = listOf(
+//        BottonNavigationItem(
+//            title = "Home/{nome}",
+//            selectedIcon = Icons.Filled.Home,
+//            unselectedIcon = Icons.Filled.Home,
+//            hasNew = false,
+//
+//            ),
+//        BottonNavigationItem(
+//            title = "Perfil",
+//            selectedIcon = Icons.Filled.Person,
+//            unselectedIcon = Icons.Filled.Person,
+//            hasNew = false,
+//
+//            ),
+//        BottonNavigationItem(
+//            title = "Meditacoes",
+//            selectedIcon = Icons.Filled.PlayArrow,
+//            unselectedIcon = Icons.Filled.PlayArrow,
+//            hasNew = false,
+//
+//            )
+//
+//    )
+
     Column(modifier = Modifier
         .fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+
+       // .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally,
+
+
     ){
 
         Row(
@@ -276,39 +316,9 @@ fun HomeScreen(nome: String , navController: NavController) {
                     )
                 )
             }
-            Card(
-                modifier = Modifier
-                    .shadow(
-                        elevation = 4.dp,
-                        spotColor = Color(0x40000000),
-                        ambientColor = Color(0x40000000)
-                    )
-                    .width(370.dp)
-                    .height(107.dp)
-                    .padding(top = 20.dp, bottom = 5.dp),
-
-                colors = CardDefaults.cardColors(Color(0xFF005DF9)),
-                shape = RoundedCornerShape(20.dp)
-            ) {
-                Column (
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ){
-                    Text(text = "Em breve farmácias credenciadas",
-                        style = TextStyle(
-                            fontSize = 20.sp,
-                            fontFamily = FontFamily.SansSerif,
-                            fontWeight = FontWeight(700),
-                            color = Color(0xFFFFFFFF),
-                            textAlign = TextAlign.Center,
-                        )
-                    )
-                }
-            }
             Footer(navController , "Meditacoes" )
+            //BottonNavigation(navController)
+
         }
     }
 }
