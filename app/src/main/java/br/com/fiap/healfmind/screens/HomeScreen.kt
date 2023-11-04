@@ -1,10 +1,11 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package br.com.fiap.healfmind.screens
 
-import android.widget.ImageButton
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -14,14 +15,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -40,23 +40,61 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import br.com.fiap.healfmind.R
+import br.com.fiap.healfmind.components.Footer
 import com.example.healf_mind.components.CardHome
 
 
+//data class BottonNavigationItem(
+//    val title: String,
+//    val selectedIcon: ImageVector,
+//    val unselectedIcon: ImageVector,
+//    val hasNew: Boolean,
+//    val badgeCount: Int? = null // Contador de notificações
+//)
+
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(nome: String , navController: NavController) {
     var pesquisa by remember {
         mutableStateOf("")
     }
 
+//    val items = listOf(
+//        BottonNavigationItem(
+//            title = "Home/{nome}",
+//            selectedIcon = Icons.Filled.Home,
+//            unselectedIcon = Icons.Filled.Home,
+//            hasNew = false,
+//
+//            ),
+//        BottonNavigationItem(
+//            title = "Perfil",
+//            selectedIcon = Icons.Filled.Person,
+//            unselectedIcon = Icons.Filled.Person,
+//            hasNew = false,
+//
+//            ),
+//        BottonNavigationItem(
+//            title = "Meditacoes",
+//            selectedIcon = Icons.Filled.PlayArrow,
+//            unselectedIcon = Icons.Filled.PlayArrow,
+//            hasNew = false,
+//
+//            )
+//
+//    )
+
     Column(modifier = Modifier
         .fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+
+       // .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally,
+
+
     ){
 
         Row(
@@ -234,9 +272,9 @@ fun HomeScreen(nome: String , navController: NavController) {
                     .padding(start = 10.dp, top = 10.dp, bottom = 15.dp, end = 10.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                CardHome(titulo = "Marcar\nconsulta" , caminhoImagem = R.drawable.doutor2)
-                CardHome(titulo = "Minhas\nconsultas" , caminhoImagem = R.drawable.consulta2)
-                CardHome(titulo = "Clínicas" , caminhoImagem = R.drawable.clinica2)
+                CardHome(titulo = "Marcar\nconsulta" , caminhoImagem = R.drawable.doutor2 , navController , "MarcarConsulta")
+                CardHome(titulo = "Minhas\nconsultas" , caminhoImagem = R.drawable.consulta2,navController , "")
+                CardHome(titulo = "Clínicas" , caminhoImagem = R.drawable.clinica2,navController , "")
             }
             Text(
                 text = "Parceiros com desconto",
@@ -275,43 +313,12 @@ fun HomeScreen(nome: String , navController: NavController) {
                         fontFamily = FontFamily.SansSerif,
                         fontWeight = FontWeight(400),
                         color = Color(0xFF969696),
-
                     )
                 )
             }
+            Footer(navController , "Meditacoes" )
+            //BottonNavigation(navController)
 
-            Card(
-                modifier = Modifier
-                    .shadow(
-                        elevation = 4.dp,
-                        spotColor = Color(0x40000000),
-                        ambientColor = Color(0x40000000)
-                    )
-                    .width(370.dp)
-                    .height(107.dp)
-                    .padding(top = 20.dp, bottom = 5.dp),
-
-                colors = CardDefaults.cardColors(Color(0xFF005DF9)),
-                shape = RoundedCornerShape(20.dp)
-            ) {
-                Column (
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ){
-                    Text(text = "Em breve farmácias credenciadas",
-                        style = TextStyle(
-                            fontSize = 20.sp,
-                            fontFamily = FontFamily.SansSerif,
-                            fontWeight = FontWeight(700),
-                            color = Color(0xFFFFFFFF),
-                            textAlign = TextAlign.Center,
-                        )
-                    )
-                }
-            }
         }
     }
 }
@@ -321,6 +328,6 @@ fun HomeScreen(nome: String , navController: NavController) {
 //@Preview(showSystemUi =  true , showBackground = true)
 //@Composable
 //fun HomeScreenPreview() {
-//    HomeScreen()
+//    HomeScreen("Wagner " ,  )
 //}
 
